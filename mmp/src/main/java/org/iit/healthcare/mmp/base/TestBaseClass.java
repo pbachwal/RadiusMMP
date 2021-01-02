@@ -6,18 +6,20 @@ import org.openqa.selenium.PageLoadStrategy;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
-import org.testng.annotations.AfterClass;
+import org.testng.annotations.AfterTest;
+import org.testng.annotations.BeforeTest;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 
 public class TestBaseClass {
 	protected WebDriver driver;
 
-	public void instantiateDriver()  {
+	@BeforeTest
+	public void instantiateDriver() {
 		ChromeOptions chromeOptions = new ChromeOptions();
 		chromeOptions.setPageLoadStrategy(PageLoadStrategy.NONE);
 		WebDriverManager.chromedriver().setup();
-        driver = new ChromeDriver();
+		driver = new ChromeDriver();
 		driver.manage().window().maximize();
 		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
 
@@ -27,9 +29,9 @@ public class TestBaseClass {
 		driver.get(url);
 	}
 
-	/*@AfterClass
+	@AfterTest
 	public void tearDown() {
 		driver.quit();
-	}*/
+	}
 
 }
