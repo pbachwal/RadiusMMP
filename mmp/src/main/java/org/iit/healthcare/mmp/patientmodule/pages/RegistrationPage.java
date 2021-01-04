@@ -16,8 +16,8 @@ public class RegistrationPage
 {
 	public WebDriver driver;
 	HashMap<String, String> hMap = new HashMap<String, String>();
-	int noOfChars;
-	Random rand;
+	int noOfChars = 4;
+	Random rand = new Random();
 	int noOfDigitsAge=2;
 	int noOfDigitsZip=5;
 	
@@ -42,7 +42,8 @@ public class RegistrationPage
 	By txt_conf_pwd = By.id("confirmpassword");
 	By txt_sel_secquestion = By.name("question"); 
 	By txt_answer = By.id("answer");
-	By txt_save = By.name("register");
+	//By btn_save = By.name("register");
+	By btn_save = By.xpath("//input[@type='submit']");
 	
 	public RegistrationPage(WebDriver driver) 
 	{
@@ -79,10 +80,11 @@ public class RegistrationPage
 	
 	public void enterLicenseNo() 
 	{
-		String s = AppLibrary.getRandomNo(6,10000);
-		String LicenseNo = s.substring(0, 8);
+		/*String LicenseNo = AppLibrary.getRandomNo(7,1000000);
+		LicenseNo = LicenseNo.substring(LicenseNo.length() - 8).trim();*/
+		String LicenseNo = "98765784";
 		driver.findElement(txt_license).sendKeys(LicenseNo);
-		hMap.put("LicenseNumber",  LicenseNo);
+		hMap.put("LicenseNumber", LicenseNo);
 	}
 	
 	public void enterSSN()
@@ -101,19 +103,19 @@ public class RegistrationPage
 	public void enterCity() 
 	{
 		String city = "Boston";
-		driver.findElement(txt_state).sendKeys(city);
+		driver.findElement(txt_city).sendKeys(city);
 		hMap.put("City", city);
 	}
 	public void enterAddress() 
 	{
 		String address = "PrincetonPark";
-		driver.findElement(txt_state).sendKeys(address);
+		driver.findElement(txt_address).sendKeys(address);
 		hMap.put("Address", address);
 	}
 	public void enterZipCode() 
 	{
 		String zipCode = AppLibrary.getRandomNoOfDigits(noOfDigitsZip)+"";
-		driver.findElement(txt_state).sendKeys(zipCode);
+		driver.findElement(txt_zipcode).sendKeys(zipCode);
 		hMap.put("ZipCode", zipCode);
 	}
 	
@@ -154,17 +156,17 @@ public class RegistrationPage
 	
 	public void enterUserDetails()
 	{
-		String emailId = "Rob"+rand.nextInt(100)+"@gmail.com";
+		String emailId = "Ruby"+rand.nextInt(100)+"@gmail.com";
 		driver.findElement(txt_email).sendKeys(emailId);
 		hMap.put("Email", emailId);
 		
 		
-		String userName = "Rob"+rand.nextInt(100);
+		String userName = "Ruby"+rand.nextInt(100);
 		driver.findElement(txt_username).sendKeys(userName);
 		hMap.put("Username", userName);
 		
 	 
-		String password="pwd"+rand.nextInt(100);
+		String password="P@ssword1";
 		driver.findElement(txt_password).sendKeys(password);
 		hMap.put("Password", password);
 		
@@ -187,7 +189,7 @@ public class RegistrationPage
 	{
 		String msg="";
 		try{
-			driver.findElement(txt_save).click();
+			driver.findElement(btn_save).click();
 			Alert alert = driver.switchTo().alert();
 			msg = alert.getText();
 			alert.accept();
@@ -217,7 +219,6 @@ public class RegistrationPage
 		enterPharmaDetails();
 		enterUserDetails();
 		enterSecurityQuestion();
-		clickonSaveButton();
 	}
 }	
 	
