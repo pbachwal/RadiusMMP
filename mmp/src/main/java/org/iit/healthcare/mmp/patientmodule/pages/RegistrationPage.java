@@ -82,7 +82,7 @@ public class RegistrationPage
 	{
 		/*String LicenseNo = AppLibrary.getRandomNo(7,1000000);
 		LicenseNo = LicenseNo.substring(LicenseNo.length() - 8).trim();*/
-		String LicenseNo = "98765784";
+		String LicenseNo = "12345678";
 		driver.findElement(txt_license).sendKeys(LicenseNo);
 		hMap.put("LicenseNumber", LicenseNo);
 	}

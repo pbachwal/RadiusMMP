@@ -13,8 +13,7 @@ public class RegistrationPatientTests extends TestBase
 	@Test
 	public void validateRegistration() throws InterruptedException
 	{
-		
-		instantiateDriver();
+	
 		launchApplication("http://96.84.175.78/MMP-Release2-Integrated-Build.6.8.000/portal/login.php");
 		regPage = new RegistrationPage(driver);
 		regPage.clickOnRegisterBtn();
