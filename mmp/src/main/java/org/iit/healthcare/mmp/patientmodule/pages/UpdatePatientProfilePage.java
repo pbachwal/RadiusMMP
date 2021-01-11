@@ -9,6 +9,7 @@ import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.Select;
 
 public class UpdatePatientProfilePage 
 {
@@ -18,13 +19,14 @@ public class UpdatePatientProfilePage
 	HashMap<String, String> hMap = new HashMap<String, String>();
 	HashMap<String, String> hMap1 = new HashMap<String, String>();
 	Random rand1 = new Random();
-	
+	Select sel;
+		
 	By txt_firstname = By.id("fname");
 	By txt_lastname = By.id("lname");
 	By txt_License = By.id("licn");
 	By txt_ssn = By.id("ssn");
 	By txt_address = By.id("addr");
-	By txt_age = By.id("lname");
+	By txt_age = By.id("age");
 	By txt_weight = By.id("weight"); 
 	By txt_height = By.id("height");
 	By txt_city = By.id("city");
@@ -108,12 +110,12 @@ public class UpdatePatientProfilePage
 			case 11:
 				editZipcode();
 				break;
-			case 12:
+			/*case 12:
 				editProvInfo();
 				break;
 			case 13:
 				editInsuranceInfo();
-				break;
+				break;*/
 		}
 	}
 	
@@ -130,14 +132,16 @@ public class UpdatePatientProfilePage
 		editState();
 		editZipcode();
 		editProvInfo();
-		editInsuranceInfo();
-	}	
+		//editInsuranceInfo();
+	}		
 	
 	public void editFirstName() 
 	{
 		we = driver.findElement(txt_firstname);
-		System.out.println("FirstName:" + we.getText());
-		String Editedfname = we.getText()+(char)(65 + rand1.nextInt(26));
+		//System.out.println("FirstName:" + we.getText());
+		System.out.println("FirstName:" + we.getAttribute("value"));
+		String Editedfname = we.getAttribute("value")+(char)(65 + rand1.nextInt(26));
+		System.out.println("The Editedfname value is:+ " +Editedfname);
 		we.clear();
 		we.sendKeys(Editedfname);
 		hMap1.put("FName", Editedfname);
@@ -146,8 +150,9 @@ public class UpdatePatientProfilePage
 	public void editLastName() 
 	{
 		we = driver.findElement(txt_lastname);
-		System.out.println("LastName:" + we.getText());
-		String Editedlname = we.getText()+(char)(65 + rand1.nextInt(26));
+		System.out.println("LastName:" + we.getAttribute("value"));
+		String Editedlname = we.getAttribute("value")+(char)(65 + rand1.nextInt(26));
+		System.out.println("The Edited Lastname is :" + Editedlname);
 		we.clear();
 		we.sendKeys(Editedlname);
 		hMap1.put("LName", Editedlname);
@@ -156,8 +161,8 @@ public class UpdatePatientProfilePage
 	public void editLicense() 
 	{
 		we = driver.findElement(txt_License);
-		System.out.println("License:" + we.getText());
-		String Editedlname = "10981678";
+		System.out.println("License:" + we.getAttribute("value"));
+		String Editedlname = "13265722";
 		we.clear();
 		we.sendKeys(Editedlname);
 		hMap1.put("License", Editedlname);
@@ -166,7 +171,7 @@ public class UpdatePatientProfilePage
 	public void editSSN() 
 	{
 		we = driver.findElement(txt_ssn);
-		System.out.println("SSN:" + we.getText());
+		System.out.println("SSN:" + we.getAttribute("value"));
 		String Editedssn = Calendar.getInstance().getTimeInMillis()%1000000000+"";
 		we.clear();
 		we.sendKeys(Editedssn);
@@ -176,7 +181,7 @@ public class UpdatePatientProfilePage
 	public void editHeight() 
 	{
 		we = driver.findElement(txt_height);
-		System.out.println("Height:" + we.getText());
+		System.out.println("Height:" + we.getAttribute("value"));
 		String Editedheight =  rand1.nextInt(100)+"";
 		we.clear();
 		we.sendKeys(Editedheight);
@@ -186,7 +191,7 @@ public class UpdatePatientProfilePage
 	public void editWeight() 
 	{
 		we = driver.findElement(txt_weight);
-		System.out.println("Weight:" + we.getText());
+		System.out.println("Weight:" + we.getAttribute("value"));
 		String EditedWeight =  rand1.nextInt(100)+"";
 		we.clear();
 		we.sendKeys(EditedWeight);
@@ -195,7 +200,9 @@ public class UpdatePatientProfilePage
 	
 	public void editCity() 
 	{
-		String EditedCity =  "Texas";
+		we = driver.findElement(txt_city);
+		System.out.println("City:" + we.getAttribute("value"));
+		String EditedCity =  "Houston";
 		we.clear();
 		we.sendKeys(EditedCity);
 		hMap1.put("City", EditedCity);
@@ -203,17 +210,20 @@ public class UpdatePatientProfilePage
 	
 	public void editState() 
 	{
-		String Editedstate = AppLibrary.getRandomState();
+		we = driver.findElement(txt_state);
+		System.out.println("State:" + we.getAttribute("value"));
+		//String Editedstate = AppLibrary.getRandomState();
+		String EditedState = "MA";
 		we.clear();
-		we.sendKeys(Editedstate);
-		hMap1.put("State", Editedstate);
+		we.sendKeys(EditedState);
+		hMap1.put("State", EditedState);
 	}
 	
 	public void editAddress() 
 	{
 		we = driver.findElement(txt_address);
-		System.out.println("Address:" + we.getText());
-		String Editedaddress = we.getText()+(char)(65 + rand1.nextInt(26));
+		System.out.println("Address:" + we.getAttribute("value"));
+		String Editedaddress = we.getAttribute("value")+(char)(65 + rand1.nextInt(26));
 		we.clear();
 		we.sendKeys(Editedaddress);
 		hMap1.put("Address", Editedaddress);
@@ -222,9 +232,10 @@ public class UpdatePatientProfilePage
 	public void editAge() 
 	{
 		we = driver.findElement(txt_age);
-		System.out.println("Age:" + we.getText());
+		System.out.println("Age:" + we.getAttribute("value"));
 		int noOfDigitsAge = 2;
 		String Editedage = AppLibrary.getRandomNoOfDigits(noOfDigitsAge)+"";
+		System.out.println("The Edited age value is:" + Editedage);
 		we.clear();
 		we.sendKeys(Editedage);
 		hMap1.put("Age", Editedage);
@@ -235,31 +246,38 @@ public class UpdatePatientProfilePage
 		int noOfDigitsZip = 5;
 		we = driver.findElement(txt_zipcode);
 		String EditedzipCode = AppLibrary.getRandomNoOfDigits(noOfDigitsZip)+"";
+		System.out.println("The edited zipcode value is:" +EditedzipCode);
 		we.clear();
 		we.sendKeys(EditedzipCode);
 		hMap1.put("Zipcode", EditedzipCode);
 	}
-	
+		
 	public void editProvInfo() 
 	{
 		we = driver.findElement(txt_providerinformation);
-		System.out.println("ProvInfo:" + we.getText());
-		String Editedpinfo = we.getText()+(char)(65 + rand1.nextInt(26));
+		Select sel = new Select(we);
+		sel.selectByIndex(1);
+		System.out.println("Text value : " + sel.getFirstSelectedOption());
+		System.out.println("ProvInfo:" + we.getAttribute("value"));
+		String Editedpinfo = we.getAttribute("value")+(char)(65 + rand1.nextInt(26));
 		we.clear();
 		we.sendKeys(Editedpinfo);
 		hMap1.put("FName", Editedpinfo);
 		
 	}
 	
-	public void editInsuranceInfo()
+	/*public void editInsuranceInfo()
 	{
 		we = driver.findElement(txt_insuranceinformation);
-		System.out.println("InsuranceInformation:" + we.getText());
-		String Editedinsinfo = we.getText()+(char)(65 + rand1.nextInt(26));
+		Select sel = new Select(we);
+		sel.selectByIndex(0);
+		System.out.println("Text value : " + sel.getFirstSelectedOption());
+		System.out.println("InsuranceInformation:" + we.getAttribute("value"));
+		String Editedinsinfo = we.getAttribute("value")+(char)(65 + rand1.nextInt(26));
 		we.clear();
 		we.sendKeys(Editedinsinfo);
 		hMap1.put("FName", Editedinsinfo);
-	}
+	}*/
 	
 	
 	public String clickOnSaveButton() 
@@ -278,7 +296,12 @@ public class UpdatePatientProfilePage
 	    }
 		return msg;
 		
-		
+		}
+	
+		public void tearDown()
+		{
+			driver.close();
+		}
 }
 	
 	
@@ -299,4 +322,3 @@ public class UpdatePatientProfilePage
 	
 	
 	
-}

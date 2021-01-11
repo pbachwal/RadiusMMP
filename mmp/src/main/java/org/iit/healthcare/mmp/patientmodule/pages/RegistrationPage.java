@@ -82,7 +82,7 @@ public class RegistrationPage
 	{
 		/*String LicenseNo = AppLibrary.getRandomNo(7,1000000);
 		LicenseNo = LicenseNo.substring(LicenseNo.length() - 8).trim();*/
-		String LicenseNo = "12345678";
+		String LicenseNo = "12325378";
 		driver.findElement(txt_license).sendKeys(LicenseNo);
 		hMap.put("LicenseNumber", LicenseNo);
 	}
@@ -149,7 +149,7 @@ public class RegistrationPage
 		hMap.put("Pharmacy", pharmacy);
 		
 		
-		String pharmacyAddress = "12 Chipmunk Crossing";
+		String pharmacyAddress = "7 Appleton Avenue";
 		driver.findElement(txt_pharmacyaddress).sendKeys(pharmacyAddress);
 		hMap.put("Pharmacy Address", pharmacyAddress);
 	}
