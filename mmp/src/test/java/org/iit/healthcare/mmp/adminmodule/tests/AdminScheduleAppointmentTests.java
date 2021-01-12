@@ -43,7 +43,6 @@ public class AdminScheduleAppointmentTests extends TestBaseClass {
 
 	@Test
 	public void validateAppointmentDetails() throws InterruptedException {
-		instantiateDriver();
 		launchApplication(admUrl);
 		admLoginPage = new AdminLoginPage(driver);
 		admLoginPage.login(admUname, admPassword);

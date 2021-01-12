@@ -1,5 +1,6 @@
 package org.iit.healthcare.mmp.adminmodule.tests;
 
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -30,8 +31,7 @@ public class AdminCreateFeeTests extends TestBaseClass {
 	private Map<String ,String> patientCredentialsMap;
 		
 	@BeforeClass()
-	public void setUp() {
-		instantiateDriver();
+	public void setUp() throws IOException {
 		launchApplication("http://96.84.175.78/MMP-Release2-Admin-Build.2.1.000/login.php");
 		adminLoginPage = new AdminLoginPage(driver);	
 		getAdminLoginCredentials();
@@ -64,13 +64,13 @@ public class AdminCreateFeeTests extends TestBaseClass {
 		patientHomePage = new PatientHomePage(driver);
 		patientHomePage.navigationMenuItem("Fees");
 		feesPage = new FeesPage(driver);
-		String actualBalance = feesPage.getPatientFeeBalance("$0");
+		boolean actualBalance = feesPage.getPatientFeeBalance("$0");
 		System.out.println("actualBalance:" + actualBalance);
 
-		Assert.assertEquals(actualBalance, expectedFee);
+		Assert.assertTrue(actualBalance, expectedFee);
 	}
 	
-	private Map<String, String> getPatientLoginCredentials() {
+	private Map<String, String> getPatientLoginCredentials() throws IOException {
 		AppLibrary readExcel = new  AppLibrary("C:\\kalpana\\projects\\mmp\\mmpTestData\\mmpLogin.xlsx");				
 		Object[][] patientCredentials = readExcel.getTestData("PatientCredentials");
 		patientCredentialsMap = new HashMap<String,String>();
@@ -79,7 +79,7 @@ public class AdminCreateFeeTests extends TestBaseClass {
 		return patientCredentialsMap;
 	}
 	
-	private Map<String, String> getAdminLoginCredentials() {
+	private Map<String, String> getAdminLoginCredentials() throws IOException {
 		AppLibrary readExcel = new  AppLibrary("C:\\kalpana\\projects\\mmp\\mmpTestData\\mmpLogin.xlsx");
 		Object[][] adminCredentials = readExcel.getTestData("AdminCredentials");
      	adminCredentialsMap = new HashMap<String,String>();

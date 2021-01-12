@@ -14,8 +14,8 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 public class AppLibrary {
 	public String path;
 	private FileInputStream fis;
-	private XSSFWorkbook workbook = null;
-	private XSSFSheet sheet = null;
+	private static XSSFWorkbook workbook = null;
+	private static XSSFSheet sheet = null;
 	static Random rand;
 
 	public AppLibrary() {
@@ -45,24 +45,10 @@ public class AppLibrary {
 		return formattedDate;
 	}
 
-	public static String[][] readXlsx(String filePath) throws IOException {
-
+	public static Object[][] readXLSX(String filePath, String sheetName) throws IOException {
 		File srcFile = new File(filePath);
 		FileInputStream fis = new FileInputStream(srcFile);
-		XSSFWorkbook wb = new XSSFWorkbook(fis);
-		XSSFSheet sheet = wb.getSheetAt(0);
-		int row = sheet.getLastRowNum() + 1;
-		int col = 2;
-		String[][] str = new String[row][col];
-		for (int i = 0; i < row; i++) {
-			str[i][0] = sheet.getRow(i).getCell(0).toString();
-			str[i][1] = sheet.getRow(i).getCell(1).toString();
-		}
-		wb.close();
-		return str;
-	}
-
-	public Object[][] getTestData(String sheetName) {
+		workbook = new XSSFWorkbook(fis);
 		sheet = workbook.getSheet(sheetName);
 		Object[][] data = new Object[sheet.getLastRowNum()][sheet.getRow(0).getLastCellNum()];
 		for (int i = 0; i < sheet.getLastRowNum(); i++) {
@@ -73,6 +59,22 @@ public class AppLibrary {
 			}
 
 		}
+		workbook.close();
+		return data;
+	}
+
+	public Object[][] getTestData(String sheetName) throws IOException {
+		sheet = workbook.getSheet(sheetName);
+		Object[][] data = new Object[sheet.getLastRowNum()][sheet.getRow(0).getLastCellNum()];
+		for (int i = 0; i < sheet.getLastRowNum(); i++) {
+			for (int j = 0; j < sheet.getRow(0).getLastCellNum(); j++) {
+				data[i][j] = sheet.getRow(i + 1).getCell(j).toString();
+				System.out.println(data[i][j]);
+
+			}
+
+		}
+		workbook.close();
 		return data;
 
 	}

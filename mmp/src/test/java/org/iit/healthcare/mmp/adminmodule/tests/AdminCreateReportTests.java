@@ -30,7 +30,6 @@ public class AdminCreateReportTests extends TestBaseClass {
 
 	@BeforeClass()
 	public void setUp() {
-		instantiateDriver();
 		launchApplication("http://96.84.175.78/MMP-Release2-Admin-Build.2.1.000/login.php");
 		adminLoginPage = new AdminLoginPage(driver);
 		adminLoginPage.login(uname, pword);

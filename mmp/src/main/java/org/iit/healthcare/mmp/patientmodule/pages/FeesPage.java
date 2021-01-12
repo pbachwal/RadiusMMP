@@ -16,7 +16,10 @@ public class FeesPage {
 		return new PayNowPage(driver);
 	}
 	
-	public String getPatientFeeBalance(String balance) {
-		return driver.findElement(By.xpath("//p[contains(text(), '"+ balance +"')]")).getText();
+	public boolean getPatientFeeBalance(String balance) {
+		boolean feeBal = false;
+		String actualBal = driver.findElement(By.xpath("//p[contains(text(), '"+ balance +"')]")).getText();
+		System.out.println("Actual balance:" +actualBal);
+		return feeBal;
 	}
 }
