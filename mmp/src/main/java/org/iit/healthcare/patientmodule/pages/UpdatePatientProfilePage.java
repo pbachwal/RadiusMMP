@@ -1,4 +1,4 @@
-package org.iit.healthcare.mmp.patientmodule.pages;
+package org.iit.healthcare.patientmodule.pages;
 
 import java.util.Calendar;
 import java.util.HashMap;
@@ -131,7 +131,7 @@ public class UpdatePatientProfilePage
 		editAge();
 		editState();
 		editZipcode();
-		editProvInfo();
+		//editProvInfo();
 		//editInsuranceInfo();
 	}		
 	
@@ -252,7 +252,7 @@ public class UpdatePatientProfilePage
 		hMap1.put("Zipcode", EditedzipCode);
 	}
 		
-	public void editProvInfo() 
+	/*public void editProvInfo() 
 	{
 		we = driver.findElement(txt_providerinformation);
 		Select sel = new Select(we);
@@ -266,7 +266,7 @@ public class UpdatePatientProfilePage
 		
 	}
 	
-	/*public void editInsuranceInfo()
+	  public void editInsuranceInfo()
 	{
 		we = driver.findElement(txt_insuranceinformation);
 		Select sel = new Select(we);

@@ -1,4 +1,4 @@
-package org.iit.healthcare.mmp.patientmodule.pages;
+package org.iit.healthcare.patientmodule.pages;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -12,7 +12,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.Select;
 
-public class RegistrationPage 
+public class PatientRegistrationPage 
 {
 	public WebDriver driver;
 	HashMap<String, String> hMap = new HashMap<String, String>();
@@ -45,7 +45,7 @@ public class RegistrationPage
 	//By btn_save = By.name("register");
 	By btn_save = By.xpath("//input[@type='submit']");
 	
-	public RegistrationPage(WebDriver driver) 
+	public PatientRegistrationPage(WebDriver driver) 
 	{
 		this.driver = driver;
 	}
@@ -81,7 +81,8 @@ public class RegistrationPage
 	public void enterLicenseNo() 
 	{
 		/*String LicenseNo = AppLibrary.getRandomNo(7,1000000);
-		LicenseNo = LicenseNo.substring(LicenseNo.length() - 8).trim();*/
+		LicenseNo = LicenseNo.substring(LicenseNo.length() - 8).trim();
+		String licenseValue = AppLibrary.generateRandom(2, 100);*/
 		String LicenseNo = "12325378";
 		driver.findElement(txt_license).sendKeys(LicenseNo);
 		hMap.put("LicenseNumber", LicenseNo);

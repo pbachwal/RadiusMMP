@@ -1,4 +1,4 @@
-package org.iit.healthcare.mmp.patientmodule.pages;
+package org.iit.healthcare.patientmodule.pages;
 
 import java.util.HashMap;
 
@@ -41,7 +41,7 @@ public class ScheduledAppointmentPage
 		driver.findElement(By.id("ChangeHeatName")).click();
 
 		driver.findElement(By.id("sym")).sendKeys("Fever and Cold");
-		appointmentDetailsHMap.put("sym","Fever and Cold");
+		appointmentDetailsHMap.put("symptoms","Fever and Cold");
 
 		driver.findElement(By.xpath("//input[@value='Submit']")).click();
 		return appointmentDetailsHMap;
@@ -50,21 +50,28 @@ public class ScheduledAppointmentPage
 	public HashMap<String, String> validateAppDetailsinSpage()
 	{
 		HashMap<String, String> sPageHMap = new HashMap<String, String>();
-		sPageHMap.put("dateofAppointment", driver.findElement(By.xpath("//div[@class='panel panel-info']//h3[@class='panel-title']")).getText().trim());
-		//sPageHMap.put("time", driver.findElement(By.xpath("//a[contains(text(),'Time')]")).getText().split(":"));
-		//sPageHMap.put("sym", driver.findElement(By.xpath("//a[contains(text(),'Symptoms')]")).getText().split(":"));
-		//sPageHMap.put("doctorName", driver.findElement(By.xpath("//a[contains(text(),'Provider')]")).getText().split(":"));
-		String timeWE = driver.findElement(By.xpath("//a[contains(text(),'Time')]")).getText();
-		String timeWEArr[] = timeWE.split(":");
-		sPageHMap.put("time",timeWEArr[1].trim());
-		 
-		String symWE= driver.findElement(By.xpath("//a[contains(text(),'Symptoms')]")).getText();
-		String symWEArr[] = symWE.split(":");
-		sPageHMap.put("sym",  symWEArr[1].trim());
 		
 		String doctorNameWE= driver.findElement(By.xpath("//a[contains(text(),'Provider')]")).getText();
 		String doctorNameWEArr[] =doctorNameWE.split(":");
 		sPageHMap.put("doctorName",doctorNameWEArr[1].trim());
+		
+		sPageHMap.put("dateofAppointment", driver.findElement(By.xpath("//div[@class='panel panel-info']//h3[@class='panel-title']")).getText().trim());
+		//sPageHMap.put("time", driver.findElement(By.xpath("//a[contains(text(),'Time')]")).getText().split(":"));
+		//sPageHMap.put("sym", driver.findElement(By.xpath("//a[contains(text(),'Symptoms')]")).getText().split(":"));
+		//sPageHMap.put("doctorName", driver.findElement(By.xpath("//a[contains(text(),'Provider')]")).getText().split(":"));
+				 
+		sPageHMap.put("dateofAppointment", driver.findElement(By.xpath("//div[@class='panel panel-info']//h3[@class='panel-title']")).getText().trim());
+		
+		sPageHMap.put("dateofAppointment", driver.findElement(By.xpath("//div[@class='panel panel-info']//h3[@class='panel-title']")).getText().trim());
+		
+		String timeWE = driver.findElement(By.xpath("//a[contains(text(),'Time')]")).getText();
+		String timeWEArr[] = timeWE.split(":");
+		sPageHMap.put("time",timeWEArr[1].trim());
+		
+		String symWE= driver.findElement(By.xpath("//a[contains(text(),'Symptoms')]")).getText();
+		String symWEArr[] = symWE.split(":");
+		sPageHMap.put("symptoms",  symWEArr[1].trim());
+		
 		return sPageHMap;
 	}
 	
