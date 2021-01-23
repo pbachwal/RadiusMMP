@@ -4,6 +4,9 @@ import java.util.HashMap;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class AdminSearchPatientsPage 
 {
@@ -30,7 +33,12 @@ public class AdminSearchPatientsPage
 
 	public void clickOnSearch() 
 	{
-		driver.findElement(searchBtnLocator).click();
+		//driver.findElement(searchBtnLocator).click();
+		WebDriverWait wait = new WebDriverWait(driver,30);		
+		
+	    WebElement searchLink = wait.until(ExpectedConditions.visibilityOfElementLocated(searchBtnLocator));
+		
+		searchLink.click();
 	}
 
 	public AdminCreateFeePage clickOnPatientRecord(String name) 
